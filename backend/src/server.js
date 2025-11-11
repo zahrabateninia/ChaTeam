@@ -1,28 +1,36 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import authRoutes from './routes/auth.route.js'
-import messageRoutes from './routes/message.route.js'
+import express from 'express';
+import dotenv from 'dotenv';
+import authRoutes from './routes/auth.route.js';
+import messageRoutes from './routes/message.route.js';
 import path from "path";
 
-const app = express()
+// Load environment variables 
+dotenv.config();
+
+const app = express();
 const __dirname = path.resolve();
 
-dotenv.config()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
-app.use('/api/auth', authRoutes)
-app.use('/api/messages', messageRoutes)
+// Middleware
+app.use(express.json()); 
 
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/messages', messageRoutes);
 
-// make ready for deployment
-if (ENV.NODE_ENV === "production") {
+// Deployment configuration
+if (process.env.NODE_ENV === "production") {
+
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("*", (_, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
 
-
-
-app.listen(PORT, ()=> console.log("server is running on port " + PORT))
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});

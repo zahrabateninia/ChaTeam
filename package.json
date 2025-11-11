@@ -12,5 +12,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zahrabateninia/Realtime_Chat_App.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zahrabateninia/Realtime_Chat_App/issues"
+  },
+  "homepage": "https://github.com/zahrabateninia/Realtime_Chat_App#readme"
 }
