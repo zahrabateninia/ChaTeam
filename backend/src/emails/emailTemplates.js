@@ -24,7 +24,6 @@ export function createWelcomeEmailTemplate(name, clientURL) {
         <td align="center">
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);">
             
-            <!-- Header Section -->
             <tr>
               <td align="center" style="padding: 48px 40px 32px 40px;">
                 <div style="width: 72px; height: 72px; margin-bottom: 24px;">
@@ -35,14 +34,12 @@ export function createWelcomeEmailTemplate(name, clientURL) {
               </td>
             </tr>
 
-            <!-- Body Section -->
             <tr>
               <td style="padding: 0 40px 40px 40px;">
                 <p style="margin: 0 0 24px 0; color: ${textColor}; font-size: 16px; line-height: 26px;">
                   Messenger is designed to keep you connected with what matters most. Whether it's a quick hello or a deep conversation, we've built the space for it.
                 </p>
 
-                <!-- Steps Card -->
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9; border-radius: 16px; margin-bottom: 32px;">
                   <tr>
                     <td style="padding: 24px;">
@@ -76,8 +73,6 @@ export function createWelcomeEmailTemplate(name, clientURL) {
                 </table>
               </td>
             </tr>
-
-            <!-- Footer Section -->
             <tr>
               <td style="padding: 32px 40px; border-top: 1px solid #f1f5f9; background-color: #fafafa;">
                 <p style="margin: 0 0 16px 0; color: ${mutedText}; font-size: 14px; text-align: center; line-height: 20px;">
@@ -96,11 +91,7 @@ export function createWelcomeEmailTemplate(name, clientURL) {
           </table>
           
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; margin-top: 24px;">
-            <tr>
-              <td align="center" style="color: #94a3b8; font-size: 12px;">
-                © 2025 Messenger Inc. 123 Tech Lane, San Francisco, CA
-              </td>
-            </tr>
+          
           </table>
         </td>
       </tr>

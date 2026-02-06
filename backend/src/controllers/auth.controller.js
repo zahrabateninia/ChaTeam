@@ -1,8 +1,7 @@
-import User from "../modals/User"
-import bcrypt from 'bcryptjs'
+import User from "../modals/User";
+import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import { ENV } from "../lib/env.js";
-
 
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -13,7 +12,9 @@ export const signup = async (req, res) => {
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,9 +35,6 @@ export const signup = async (req, res) => {
     });
 
     if (newUser) {
-      generateToken(newUser._id, res);
-      await newUser.save(); // save to db
-
       const savedUser = await newUser.save();
       generateToken(savedUser._id, res);
 
@@ -45,10 +43,14 @@ export const signup = async (req, res) => {
         fullName: newUser.fullName,
         email: newUser.email,
         profilePic: newUser.profilePic,
-      });
+      });  
 
       try {
-        await sendWelcomeEmail(savedUser.email, savedUser.fullName, ENV.CLIENT_URL);
+        await sendWelcomeEmail(
+          savedUser.email,
+          savedUser.fullName,
+          ENV.CLIENT_URL,
+        );
       } catch (error) {
         console.error("Failed to send welcome email:", error);
       }
