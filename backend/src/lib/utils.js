@@ -20,6 +20,3 @@ export const generateToken = (userId, res) => {
 
   return token;
 };
-
-// http://localhost
-// https://someDomain.com in production it is secured 
