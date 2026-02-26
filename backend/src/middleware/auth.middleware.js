@@ -1,10 +1,10 @@
 import User from "../modals/User";
-import { jws } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { ENV } from "../lib/env";
 
-export const protectRout = async (req, res, next) => {
+export const protectRoute = async (req, res, next) => {
   try {
-    const token = req.cookies.jws;
+    const token = req.cookies.jwt;
     if (!token)
       return res
         .status(401)
@@ -19,5 +19,7 @@ export const protectRout = async (req, res, next) => {
 
     req.user = user;
     next();
-  } catch (error) {}
+  } catch (error) {
+    return res.status(401).json({ message: "Unauthorized - Invalid Token" });
+  }
 };
