@@ -1,12 +1,11 @@
-import { resendClient } from "../lib/resend";
+import { resendClient, sender } from "../lib/resend";
 import { createWelcomeEmailTemplate } from "./emailTemplates";
 
 export const sendWelcomeEmail = async (name, email, clientURL) => {
   const { data, error } = await resendClient.emails.send({
     from: `${sender.name} <${sender.email}>`,
     to: email,
-    // TO_DO: come up with a good name for this app
-    subject: "Welcome to -------",
+    subject: "Welcome to Chateam",
     html: createWelcomeEmailTemplate(name, clientURL),
   });
 
