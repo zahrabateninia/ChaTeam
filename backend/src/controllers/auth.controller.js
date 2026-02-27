@@ -96,4 +96,14 @@ export const logout = (_, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 
-export const updateProfile = async (req, res) => {};
+export const updateProfile = async (req, res) => {
+  try {
+    const { profilePic } = req.body;
+    if (!profilePic)
+      return res
+        .status(400)
+        .json({ message: "A profile picture is required." });
+    const userId = req.user._id; // bcs of the middleware it works
+    
+  } catch (error) {}
+};
