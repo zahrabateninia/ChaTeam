@@ -20,6 +20,8 @@ export const protectRoute = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Unauthorized - Invalid Token" });
+    console.log("Error in protectRoute middleware:", error);
+    res.status(401).json({ message: "Unauthorized - Invalid Token" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
