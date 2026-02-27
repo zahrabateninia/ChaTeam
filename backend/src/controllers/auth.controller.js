@@ -1,4 +1,4 @@
-import User from "../modals/User";
+import User from "../modals/User.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import { ENV } from "../lib/env.js";
