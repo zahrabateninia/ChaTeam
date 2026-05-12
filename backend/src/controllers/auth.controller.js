@@ -2,6 +2,8 @@ import User from "../modals/User.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import { ENV } from "../lib/env.js";
+//todo
+import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -103,7 +105,18 @@ export const updateProfile = async (req, res) => {
       return res
         .status(400)
         .json({ message: "A profile picture is required." });
-    const userId = req.user._id; // bcs of the middleware it works
-    
-  } catch (error) {}
+    const userId = req.user._id; // bcs of the auth middleware, it works
+    // upload user's profile pic to the cloud
+    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+    // update the database
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profilePic: uploadResponse.secure_url },
+      { new: true },
+    );
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.log("Error in updating profile pic: ", error);
+    res.status(500).json({message: "Internal Server Error"})
+  }
 };
